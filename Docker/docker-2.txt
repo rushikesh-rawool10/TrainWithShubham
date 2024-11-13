@@ -1,0 +1,62 @@
+docker
+
+VM virtual machine vmware vs docker
+virtual machine uses hypervisor
+virtual machine--->dedicated resources RAM,cpu,storage ,own kernel and os
+on virtual machine you can run diff OS
+
+in Docker container is entity which not having it's own kernel 
+
+docker uses resources and kernel from host OS
+
+=====Docker Engine===
+ docker d
+ docker CLI
+ 
+ 
+ container d
+ 
+ docker engine is a service which allows you to run any cotainer (linux,mac os ,windows) or any kind of host os which contains 2 component docker cli and docker d.
+ 
+ docker d manages containers to create,destroy containers using a low level service called container d, you can access everything using CLI i.e. docker CLI.
+ 
+ ================dockerFile======
+ 
+ from openjdk:11 ===> (base image from docker hub)it provides base os in which java already installed
+ 
+ 
+ ----------------------------------------------------
+ docker image prune --all
+ 
+ 
+ 
+ 
+ -----------------------------------
+ docker compose connects the services (network)written inside docker-compose file
+ 
+ in docker-compose file,
+ 
+ services:
+	backend:
+		build:
+			context: .  -->usinf dockefile in same folder
+			
+			=======================================================
+			
+
+in backend service-->(need to follow developer's documenetation)
+environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DB: myDb
+	  
+in mysql db service-->(need to follow mysql documentation)
+
+environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DB: myDb
+	  
+	  

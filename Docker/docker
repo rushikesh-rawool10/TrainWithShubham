@@ -1,0 +1,154 @@
+on Linux and mac os docker will host os kernel
+on windows we need to install docker desktop tool
+
+ Docker is an open source containerization platform which allows developers to package application into containers that can be easily shared and deployed across different environment  
+
+sudo apt update
+sudo apt install docker.io
+
+docker d----> manages containers 
+
+docker ps
+
+sudo usermod -aG docker $USER
+a--APPEND, G--Group
+
+docker pull mysql:latest
+
+docker images
+
+docker run mysql:latest
+docker run -d -e MYSQL_ROOT_PASSWORD=test@123 mysql:latest
+
+docker exec -it 996a8c99dce6 sh
+
+mysql -u root -p
+
+systemctl status docker---to check docker engine
+
+/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+
+====Important====
+inside docker file 
+|
+base image
+work dir
+copy code
+run java (compile)
+CMD
+-------------------------------
+base image -->creats os to run application and java already installed inside it
+
+==============================docker file==========
+python flask app--where flask is a frame work
+
+#getting base image
+FROM openjdk:11--->11 is the jave version(always ask developer for java/python version, so your code will run smoothly)
+download os on which java already installed to run java apps smoothly
+
+#working directory where all code will be kept
+WORKDIR app/
+
+#copy the app to the current working directory of container
+COPY Hello.java .  ---->'.' means current  WORKDIR which is /app
+
+#compile code
+RUN javac Hello.java
+
+#Run java compiled code
+CMD ["java","Hello"]
+
+
+First 4 (FROM, WORKDIR, COPY RUN)are intermeddiate layers
+
+To make container, we use 'RUN' command
+once container get built, then we need to use 'CMD' command to access the container externaly
+
+if we have used RUN ["java","Hello"], container will run but we will not able to access it externaly.
+
+To access the container externally, we use 'CMD'
+
+
+==============================================
+we can make different versions of docker images as per requirement(when code changes)
+
+build different images as per code and make versions of images
+
+1. jenkins awesome ---images name: Latest
+
+2. batch-4 is awesome  --> image name: V1
+
+8000 port is already used by container 1, so kill running container so that port will be free
+then run 2nd image using docker run
+
+
+docker interview question yt videos tws
+===================================
+docker build . -t java-app  ----->use Dockerfile in current folder and build
+
+docker run java-app
+
+==================================================
+docker image prune---- remove not used( all stopped) images
+
+docker image prune --all
+
+
+in docker image
+run---> download required libraries
+copy--> copy all files to container
+
+docker volume ls
+
+docker volume create --name dockervolume --opt type=none --opt device=dockervolumepath --opt  o=bind
+
+docker volume create --name django-app-volume --opt type=none --opt device=/home/ubuntu/docker-projects/volumes/django-app-volume --opt o=bind
+
+--opt o=bind means two way storage(local to container and vice versa)
+
+docker run -d --mount source=django-app-volume,target=/data -p 8000:8000 django-app:latest
+
+-------------------------docker compose
+micro services
+multiple containers
+
+we do not use docker compose then we need build first image then need to run container, in docker-compose
+image build and container run in a single command
+================
+sudo apt install docker-compose
+
+docker-compose up
+
+docker-compose down
+
+docker logs container ID
+=====docker networking--recording in course fundamentals
+
+
+======================================================
+docker hub
+
+docker login
+
+==========================Three Tier App===========
+
+1. Presentation Layer--Ui/ux in react js, next js
+
+2. Backend Layer/Business Layer---python,go,java. node js
+
+===========================================
+Docker Alpine build fails on mysqlclient installation with error: Exception: Can not find valid pkg-config name
+
+resolution-https://stackoverflow.com/questions/76533384/docker-alpine-build-fails-on-mysqlclient-installation-with-error-exception-can
+
+-------------------------------------------------------------------------------------------------
+Dockerfile vs docker compose
+
+Dockerfile ---to create docker image
+
+docker compose-- in one command container up and down
+
+docker-compose= docker build + docker run
+
+docker compose creates a network within containers and make them connected

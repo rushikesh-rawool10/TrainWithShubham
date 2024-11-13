@@ -1,0 +1,41 @@
+Please find the updated docker-compose file :-
+ 
+version: '3'
+services:
+  
+ backend:
+  build:
+   context: .
+  ports:
+   - "5000:5000"
+  environment:
+   MYSQL_HOST: mysql
+   MYSQL_USER: devops
+   MYSQL_PASSWORD: devops
+   MYSQL_DB: two_tier
+  depends_on:
+   - mysq
+
+ mysql:
+  image: mysql:5.7
+  environment:
+   MYSQL_ROOT_PASSWORD: test@123
+   MYSQL_DATABASE: two_tier
+   MYSQL_USER: devops
+   MYSQL_PASSWORD: devops
+  volumes:
+   - ./message.sql:/docker-entrypoint-initdb.d/message.sql
+   - mysql-data:/var/lib/mysql # Mount the volume for MySQL data storage
+
+volumes:
+ mysql-data:
+  
+  
+Here message.sql sql script should be present in the same location where your docker-compose file is present. This sql script is mounted into container's /docker-entrypoint-initdb.d directory which is where MySQL will look for initialization scripts to execute on container startup. So no need of manually creating tables after container creation via connecting to mysql db.
+
+You all can give it a try, its working for me 🙂
+
+--------
+use two_tier;
+create table messages(messsage varchar(255));
+

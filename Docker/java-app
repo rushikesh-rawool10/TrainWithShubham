@@ -1,0 +1,18 @@
+==============================docker file==========
+
+#getting base image
+FROM openjdk:11
+
+#working directory where all code will be kept
+WORKDIR app/
+
+#copy the app to the current directory of container
+COPY Hello.java .  ---->'.' means copy hello.java to WORKDIR which is /app
+
+#compile code
+RUN javac Hello.java
+
+#Run java compiled code
+CMD ["java","Hello"]
+
+===================================
