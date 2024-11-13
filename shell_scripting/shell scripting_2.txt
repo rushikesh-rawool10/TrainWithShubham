@@ -5,7 +5,7 @@ awk --filtered the output
 F- filed separator
 " "-- who is filed separator here i.e white space so ""
 =========================================================================
-2. only error log from remotye filed
+2. only error log from remote file
 
 curl 'file-link' | grep TRACE
 
@@ -37,7 +37,7 @@ how will you debug the shell script
 set -x
 
 ====================================================
-how to oprn a file in a read onlt mode
+how to open a file in a read only mode
 
 vim -r file.txt
 
