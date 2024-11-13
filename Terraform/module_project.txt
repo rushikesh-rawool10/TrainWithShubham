@@ -1,0 +1,29 @@
+Module Project
+
+/modules/demo-app 
+
+ubuntu-->ami-0eba6c58b7918d3a1
+
+amzon linux---->ami-0c1de55b79f5aff9b
+
+RHEL -->  ami-0014871499315f25a 
+
+------------------------------------------------------
+ubuntu@ip-172-31-3-60:~/Terraform$ terraform plan
+╷
+│ Error: expected billing_mode to be one of ["PROVISIONED" "PAY_PER_REQUEST"], got pay_per_request
+│
+│   with module.dev-demo-app.aws_dynamodb_table.module_demo_table,
+│   on modules/demo-app/dynamodb.tf line 7, in resource "aws_dynamodb_table" "module_demo_table":
+│    7:                 billing_mode   = "pay_per_request"
+│
+╵
+╷
+│ Error: Reference to undeclared input variable
+│
+│   on modules/demo-app/ec2.tf line 8, in resource "aws_instance" "module_demo":
+│    8:                 Name = "${var.env_name}-${var.instance_name}"
+│
+│ An input variable with the name "instance_name" has not been declared. This variable can be declared
+│ with a variable "instance_name" {} block.
+

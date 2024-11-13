@@ -1,0 +1,137 @@
+sudo apt-get update && sudo apt-get install -y gnupg software- properties-common
+    2  wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    3  gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \ --fingerprint
+    4  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive- keyring.gpg] \
+    5  https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \ sudo tee /etc/apt/sources.list.d/hashicorp.list
+    6  sudo apt update
+    7  sudo apt-get install terraform
+    8  sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+    9  wget -O- https://apt.releases.hashicorp.com/gpg |     gpg --dearmor |     sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+   10  gpg --no-default-keyring     --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg     --fingerprint
+   11  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+   12      https://apt.releases.hashicorp.com $(lsb_release -cs) main" |     sudo tee /etc/apt/sources.list.d/hashicorp.list
+   13  sudo apt update
+   14  sudo apt-get install terraform
+   15  clear
+   16  terraform --version
+   17  mkdir terraform-practice
+   18  cd terraform-practice/
+   19  ls
+   20  vim main.tf
+   21  pwd
+   22  ls
+   23  vim main.tf
+   24  ld
+   25  clear
+   26  ls
+   27  terraform init
+   28  ls
+   29  ls -a
+   30  clear
+   31  ls
+   32  terraform plan
+   33  clear
+   34  ls
+   35  pwd
+   36  terraform apply
+   37  clear
+   38  ls
+   39  cat demo.txt
+   40  clear
+   41  ls
+   42  clear
+   43  vim main.tf
+   44  ls
+   45  sudo apt install docker.io
+   46  docker ps
+   47  sudo chown $USER /var/run/docker.sock
+   48  docker ps
+   49  clear
+   50  vim terraform.tf
+   51  terraform validate
+   52  terraform fmt
+   53  terraform fmt terraform.tf
+   54  terraform init
+   55  clear
+   56  ls
+   57  vim main.tf
+   58  terraform plan
+   59  vim main.tf
+   60  clear
+   61  terraform plan
+   62  vim main.tf
+   63  docker ps
+   64  terraform apply
+   65  docker ps
+   66  clear
+   67  vim main.tf
+   68  vim terraform.tf
+   69  cd ..
+   70  mkdir terraform-aws
+   71  cd terraform-aws/
+   72  ls
+   73  vim terraform.tf
+   74  terraform init
+   75  clear
+   76  aws configure
+   77  sudo apt install awscli
+   78  aws configure
+   79  clear
+   80  aws configure
+   81  clear
+   82  ls
+   83  vim main.tf
+   84  terraform init
+   85  clear
+   86  terraform plan
+   87  clear
+   88  terraform apply
+   89  vim main.tf
+   90  vim variables.tf
+   91  vim main.tf
+   92  terraform plan
+   93  vim main.tf
+   94  terraform apply
+   95  clear
+   96  ls
+   97  vim ec2_vpc.tf
+   98  ls
+   99  cat terraform.tf
+  100  cat main.tf
+  101  ls
+  102  vim ec2_vpc.tf
+  103  cd
+  104  cd .ssh
+  105  ls
+  106  ssh-keygen
+  107  ls
+  108  pwd
+  109  cd
+  110  cd terraform-aws/
+  111  ls
+  112  vim ec2_vpc.tf
+  113  cat variables.tf
+  114  vim ec2_vpc.tf
+  115  terraform plan
+  116  terraform apply
+  117  vim ec2_vpc.tf
+  118  terraform apply
+  119  vim ec2_vpc.tf
+  120  terraform apply
+  121  ls
+  122  cat main.tf
+  123  clear
+  124  ls
+  125  vim ec2_vpc.tf
+  126  terraform apply
+  127  terraform destroy
+  128  cd terraform-remote/
+  129  terraform destroy
+  130  cd ..
+  131  cd terraform-project/
+  132  terraform destroy
+  133  terraform destroy -lock=false
+  134  cd
+  135  cd  terraform-remote/
+  136  terraform destroy
+  137  history
