@@ -1,0 +1,9 @@
+prometheus
+
+
+Promtail+loki+Grafana VS Prometheus
+
+Promtail+loki+Grafana- push bases--> increases sever load
+
+Prometheus--> pull based
+

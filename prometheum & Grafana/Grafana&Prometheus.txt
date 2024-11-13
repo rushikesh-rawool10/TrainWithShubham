@@ -1,0 +1,250 @@
+Grafana
+
+Observability
+
+application--->Logging
+				monitoring
+				Alerting
+				Visualisation
+				
+Grafana
+Loki or Prometheus
+Prom tail
+
+
+Grafana+ LOKI + Promtail===1 stack
+
+Grafana + Prometheus===2 stack
+
+ELK (Elastick logstash kibana)====stack
+
+
+Loki---Log Aggrigator
+
+
+sequence
+
+promtail will listen to the application and sends logs to Loki 
+then loki sends logs to Grafana to create dashboards
+
+Installing Grafana=====
+
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+
+sudo apt update
+
+sudo apt install grafana
+
+sudo systemctl start grafana-server
+
+sudo systemctl status grafana-server
+
+
+sudo /bin/systemctl start grafana-server
+
+cadvisor gathers container data from var/lib/docker
+
+
+
+
+
+install docker
+
+sudo chown $USER /var/run/docker.sock
+
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/cmd/loki/loki-local-config.yaml -O loki-config.yaml
+
+docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.9.1 -config.file=/mnt/config/loki-config.yaml
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
+
+docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.9.1 -config.file=/mnt/config/promtail-config.yaml
+
+http://localhost:3100
+
+
+
+
+wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
+
+docker run -d --name=prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
+docker with persistent storage (or bind mounts) 
+
+docker run -d --name=prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml -v prometheus-data:$(pwd)/prometheus-data prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
+
+
+# Create persistent volume for your data
+docker volume create prometheus-data
+# Start Prometheus container
+docker run \
+    -p 9090:9090 \
+    -v /path/to/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v prometheus-data:$(pwd)/prometheus-data \
+    prom/prometheus
+	
+	
+	promtai having PATH of target
+	Prometheus having url of target
+	
+	
+	
+	sudo apt install docker-compose
+	
+	
+	
+	https://developer.couchbase.com/tutorial-node-exporter-setup
+	
+	lsof -i:9100--to get pid of  service running on that port, then kill -9 PID
+	
+	
+	# comopenents of prometheus
+	1. retriever
+	2.Time series DB
+	3.UI
+	
+	cadvisor is tool, which allows you to make container group
+	
+	
+	prometheus<-----cadvisor<------<reddis cache
+	
+	docker-compose======================
+
+version: '3.2'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+    - cadvisor
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+    - 8080:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    depends_on:
+    - redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+    - 6379:6379
+
+Test PromQL
+rate(container_cpu_usage_seconds_total{name="redis"}[1m])
+container_memory_usage_bytes{name="redis"}
+
+
+prometheus---> port==9090
+cadvisor---> port 8080
+
+docker run -d --name nginx -p 80:80 nginx
+
+	http://52.91.117.250:8080/metrics--> console is taking data from this '/metrics', query it and give output
+	
+=============Add cAdvisor target=======
+
+
+scrape_configs:
+- job_name: cadvisor
+  scrape_interval: 5s
+  static_configs:
+  - targets:
+	- cadvisor:8080 ---> insted of localhost, we can give container name, within same server container-container bhia bhai (docker networking)
+
+
+====installing grafana=====
+
+Faced issue while installing Grafana
+getting some conflicts
+
+ solution--
+ 
+remove grafana related files under /etc/apt/sources.list.d
+
+then install grafana
+
+NOde Exportet====
+it use for runnig server details(on server which you installed all your container, nginx grafana promtheus etc) likes cpu usage, disk usage etc
+
+
+if install node exporter on server it will not shown in the cadvisor because , it will be runnig outside the container
+To see node exporter in cadvisor use node exporter container\
+
+docker container for node exporter docker compose====
+
+node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    expose:
+      - 9100
+	  
+	  =========================================
+prometheus file
+
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: "docker"
+    static_configs:
+      - targets:
+        - cadvisor:8080
+
+  - job_name: node
+	static_configs:
+      - targets:
+        - node-exporter:9100
+
+
+

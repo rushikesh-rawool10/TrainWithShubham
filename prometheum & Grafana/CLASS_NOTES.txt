@@ -1,0 +1,125 @@
+ mkdir promethus_configs
+    3  mv promethus_configs prometheus_configs
+    4  ls
+    5  cd prometheus_configs/
+    6  clear
+    7  wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
+    8  clear
+    9  ls
+   10  vim prometheus.yml
+   11  ls
+   12  sudp apt update
+   13  sudo apt update
+   14  sudo apt install docker.io
+   15  clear
+   16  ls
+   17  docker ps
+   18  sudo chown $USER /var/run/docker.sock
+   19  docker ps
+   20  docker run -d --name=prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+   21  docker ps
+   22  cat prometheus.yml
+   23  docker ps
+   24  docker kill 272a50818272
+   25  docker rm 272a50818272
+   26  clear
+   27  vim docker-compose.yml
+   28  sudo apt install docker-compose
+   29  docker-compose up -d
+   30  clear
+   31  vim docker-compose.yml
+   32  ls
+   33  vim docker-compose.yml
+   34  docker-compose up -d
+   35  docker ps
+   36  docker run -d --name nginx -p 80:80 nginx
+   37  docker ps
+   38  vim prometheus.yml
+   39  docker ps
+   40  docker restart 9141face6604
+   41  clear
+   42  sudo apt-get install -y apt-transport-https
+   43  sudo apt-get install -y software-properties-common wget
+   44  sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+   45  echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+   46  sudo apt-get update
+   47  sudo apt-get install grafana
+   48  sudo /bin/systemctl start grafana-server
+   49  docker os
+   50  docker ps
+   51  docker exec -it fe43f7629d52 bash
+   52  docker ps
+   53  docker restart fe43f7629d52
+   54  clear
+   55  cd ..
+   56  wget   https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+   57  ls
+   58  tar xvfz node_exporter-1.0.1.linux-amd64.tar.gz
+   59  cd node_exporter-1.0.1.linux-amd64/
+   60  ls
+   61  ./node_exporter
+   62  nohup
+   63  ./node_exporter &
+   64  ./node_exporter
+   65  lsof -i:9100
+   66  kill -9 9142
+   67  clear
+   68  cd ..
+   69  ls
+   70  rm -r node_exporter-1.0.1.linux-amd64
+   71  rm node_exporter-1.0.1.linux-amd64.tar.gz
+   72  clear
+   73  ls
+   74  df -h
+   75  free -h
+   76  wget https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.darwin-amd64.tar.gz
+   77  ls
+   78  tar -xvfz node_exporter-1.6.1.darwin-amd64.tar.gz
+   79  tar xvfz node_exporter-1.6.1.darwin-amd64.tar.gz
+   80  ls
+   81  cd node_exporter-1.6.1.darwin-amd64/
+   82  ls
+   83  cat node_exporter
+   84  ls
+   85  node_exporter
+   86  ./node_exporter
+   87  clear
+   88  cd ..
+   89  ls
+   90  rm node_exporter-1.6.1.darwin-amd64.tar.gz
+   91  rm -r node_exporter-1.6.1.darwin-amd64
+   92  clear
+   93  ls
+   94  wget   https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+   95  tar xvzf node_exporter-1.0.1.linux-amd64.tar.gz
+   96  ls
+   97  cd node_exporter-1.0.1.linux-amd64/
+   98  ls
+   99  ./node_exporter
+  100  ./node_exporter &
+  101  cd ..
+  102  cd prometheus_configs/
+  103  vim prometheus.yml
+  104  docker ps
+  105  docker restart 9141face6604
+  106  curl http://127.0.0.1:9100/metrics
+  107  vim prometheus.yml
+  108  docker restart 9141face6604
+  109  vim prometheus.yml
+  110  docker restart 9141face6604
+  111  curl http://localhost:9100/metrics
+  112  sudo ufw allow 9100
+  113  ls
+  114  lsof -i:9100
+  115  kill -9 10323
+  116  lsof -i:9100
+  117  clear
+  118  ls
+  119  vim docker-compose.yml
+  120  docker-compose down
+  121  docker-compose up -d
+  122  vim prometheus.yml
+  123  docker ps
+  124  docker restart 75621cc48ecd
+  125  vim docker-compose.yml
+  126  history
