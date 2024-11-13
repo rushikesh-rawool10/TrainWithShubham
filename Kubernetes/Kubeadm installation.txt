@@ -1,0 +1,114 @@
+https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+
+https://medium.com/@mrdevsecops/set-up-a-kubernetes-cluster-with-kubeadm-508db74028ce
+
+swapoff -a
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
+lsmod | grep br_netfilter 
+ sudo modprobe br_netfilter
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+sudo apt-get update 
+sudo apt install docker.io
+sudo systemctl start docker
+
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable docker
+sudo systemctl restart docker
+sudo systemctl status docker
+
+apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+
+
+
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+apt-mark hold kubelet kubeadm kubectl
+
+--E: The repository 'https://apt.kubernetes.io kubernetes-xenial Release' does not have a Release file
+
+removed the old source
+
+which was: /etc/apt/sources.list.d/apt_kubernetes_io.list which contained
+
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+sudo apt-get update
+
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+apt-mark hold kubelet kubeadm kubectl
+
+systemctl daemon-reload
+systemctl enable kubelet
+systemctl restart kubelet
+systemctl status kubelet
+
+kubeadm init --pod-network-cidr 10.0.0.0/16
+
+kubeadm join 172.31.33.11:6443 --token 89hdcr.v4widczgsj9092d4 \
+        --discovery-token-ca-cert-hash sha256:aee06f6d70c2742ac776d622b15d8d0aa022c138c2e7df2403ab33383a66f2cb
+
+ mkdir -p "$HOME"/.kube
+sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
+ 
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+kubectl get po -n kube-system
+
+sudo your-token --v=5
+
+kubeadm join 172.31.33.11:6443 --token 9aun77.3zt0cf4xp6nn9l4v --discovery-token-ca-cert-hash sha256:aee06f6d70c2742ac776d622b15d8d0aa022c138c2e7df2403ab33383a66f2cb --v=5
+
+ubuntu@ip-172-31-33-11:~/nginx$ kubectl config view
+apiVersion: v1
+clusters: null
+contexts: null
+current-context: ""
+kind: Config
+preferences: {}
+users: null
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: nginx
+spec:
+  selector:
+    app: nginx-app   # Use the appropriate label to match your pod
+  ports:
+    - protocol: TCP
+      port: 80       # Port in the service
+      targetPort: 80 # Port in the pod
+      NodePort: 30007
+

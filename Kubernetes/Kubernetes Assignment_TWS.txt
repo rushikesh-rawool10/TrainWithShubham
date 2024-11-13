@@ -1,0 +1,12 @@
+
+https://rushikesh-rawool.hashnode.dev/microservice-app-deployed-on-kubernetes
+
+https://rushikesh-rawool.hashnode.dev/deployment-of-reddit-clone-application-on-kubernetes-with-ingress-enabled
+
+========================================================================
+Linkedln post
+
+https://www.linkedin.com/posts/rushikesh-rawool-33131a126_kubernetes-microservices-docker-activity-7104757243002142720-x_oh?utm_source=share&utm_medium=member_desktop
+
+https://www.linkedin.com/posts/rushikesh-rawool-33131a126_connections-devopscommunity-kubernetescluster-activity-7104909809191178240-9c5B?utm_source=share&utm_medium=member_desktop
+

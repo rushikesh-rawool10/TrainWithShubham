@@ -1,0 +1,24 @@
+https://akarsha.hashnode.dev/microservice-application-deployed-on-kubernetes
+
+https://vedkulkarni.hashnode.dev/deployed-a-reddit-clone-on-kubernetes-with-ingress-enabled
+
+https://www.linkedin.com/posts/er-sandesh-pai-994181201_microservices-k8s-ugcPost-7104426162705088512-NkzL?utm_source=share&utm_medium=member_desktop
+
+
+
+
+
+
+
+
+On the Occasion of Teacher's Day, I am posting my first Blog!
+Special Thanks to Shubham Londhe who gave me the opportunity to enter into the world of Blogging!
+
+I'm happy to share that I successfully deployed a Microservice application on K8s.
+✅Key steps:
+*Deployed a Mongodb app
+*Deployed a flask-api
+*connected both using service directory.
+I've just written a blog that makes deploying Microservices on Kubernetes with persistent volumes! If you want to learn how to deploy Microservices apps on Kubernetes using Persistent Volumes, check out the linked blog for simple step-by-step guidance.
+Microservice App Deployed On Kubernetes
+#kubernetes #kubernetesservices #devops #devopscommunity #TWS #devopstools

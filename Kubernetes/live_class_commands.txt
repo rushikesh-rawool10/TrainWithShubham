@@ -1,0 +1,132 @@
+Shubham Londhe, [26-08-2023 12:32]
+sudo apt update
+    4  sudo apt-get install -y apt-transport-https ca-certificates curl
+    5  sudo apt install docker.io -y
+    6  sudo systemctl enable --now docker # enable and start in single command.
+    7  # Adding GPG keys.
+    8  curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg
+    9  # Add the repository to the sourcelist.
+   10  echo 'deb https://packages.cloud.google.com/apt kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   11  sudo apt update
+   12  sudo apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
+   13  sudo kubeadm init
+   14  mkdir -p $HOME/.kube
+   15  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   16  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   17  kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+   18  sudo kubeadm token create --print-join-command
+   19  kubectl get nodes
+   20  clear
+   21  mkdir projects
+   22  cd projects/
+   23  ls
+   24  mkdir nginx
+   25  cd nginx/
+   26  ls
+   27  kubectl create namespace nginx
+   28  kubectl get namespace
+   29  vim pod.yml
+   30  cat pod.yml
+   31  kubectl apply -f pod.yml
+   32  kubectl get pods
+   33  kubectl get pods -n nginx
+   34  cd projects/
+   35  cd nginx/
+   36  ls
+   37  vim deployment.yml
+   38  cat deployment.yml
+   39  vim deployment.yml
+   40  kubectl apply -f deployment.yml
+   41  vim deployment.yml
+   42  kubectl apply -f deployment.yml
+   43  kubectl get pods -n nginx
+   44  vim deployment.yml
+   45  kubectl apply -f deployment.yml
+   46  kubectl get pods -n nginx
+   47  kubectl apply -f deployment.yml
+   48  vim deployment.yml
+   49  kubectl apply -f deployment.yml
+   50  kubectl get pods -n nginx
+   51  kubectl get pods -n nginx -o wide
+   52  clear
+   53  kubectl get deployment
+   54  kubectl get deployment -n nginx
+   55  kubectl describe deployment nginx-deployment -n nginx
+   56  kubectl scale deployment nginx-deployment --replicas=2 -n nginx
+   57  kubectl get pods -n nginx
+   58  kubectl scale deployment nginx-deployment --replicas=10 -n nginx
+   59  kubectl get pods -n nginx
+   60  cd projects/nginx/
+   61  ls
+   62  cat deployment.yml
+   63  cd projects/
+   64  vim service
+   65  vim service.yml
+   66  kubectl apply -f service.yml
+   67  kubectl get service
+   68  kubectl get service -n nginx
+   69  clear
+   70  kubectl get pods -n nginx
+   71  ls
+   72  cd nginx/
+   73  ls
+   74  kubectl delete -f pod.yml
+   75  kubectl get pods -n nginx
+   76  kubectl delete nginx-deployment-558c769fcf-6bsjz -n nginx
+   77  kubectl delete pod nginx-deployment-558c769fcf-6bsjz -n nginx
+   78  kubectl get pods -n nginx
+   79  kubectl scale deployment nginx-deployment --replicas=2 -n nginx
+   80  kubectl get pods -n nginx
+   81  kubectl delete pod nginx-deployment-558c769fcf-8vks5 -n nginx
+   82  kubectl get pods -n nginx
+   83  kubectl describe pod nginx-deployment-558c769fcf-v89gs -n nginx
+   84  clear
+   85  ls
+   86  cd ..
+   87  git clone https://github.com/LondheShubham153/django-todo-cicd.git
+   88  cd django-todo-cicd/
+   89  ls
+   90  cd k8s/
+   91  ls
+   92  vim pod.yaml
+   93  kubectl create namespace django
+   94  clear
+   95  ls
+   96  vim pod.yaml
+   97  kubectl apply -f pod.yaml
+   98  kubectl get pods -n django
+   99  ls
+  100  vim deployment.yaml
+  101  kubctl apply -d deployment.yaml
+  102  kubectl apply -d deployment.yaml
+  103  kubectl apply -f deployment.yaml
+  104  kubectl get pods -n django
+  105  vim service.yaml
+  106  kubectl apply -f service.yaml
+  107  kubectl get svc -n django
+  108  kubectl get pods -n django
+  109  kubcetl scale deployment todo-deployment --replicas=6 -n django
+  110  kubecetl scale deployment todo-deployment --replicas=6 -n django
+  111  kubectl scale deployment todo-deployment --replicas=6 -n django
+  112  kubectl get pods -n django
+  113  cd projects/
+  114  ls
+  115  git clone https://github.com/LondheShubham153/microservices-k8s.git
+  116  cd microservices-k8s/
+
+Shubham Londhe, [26-08-2023 12:32]
+
+  117  cd flask-api/
+  118  cd k8s/
+  119  ls
+  120  kubectl apply -f mongo-pv.yml
+  121  kubectl apply -f mongo-pvc.yml
+  122  kubectl apply -f mongo.yml
+  123  kubectl apply -f mongo-svc.yml
+  124  kubectl get pods
+  125  kubectl apply taskmaster.yml
+  126  kubectl apply -f taskmaster.yml
+  127  kubectl apply -f taskmaster-svc.yml
+  128  vim taskmaster-svc.yml
+  129  kubectl apply -f taskmaster-svc.yml
+  130  history
