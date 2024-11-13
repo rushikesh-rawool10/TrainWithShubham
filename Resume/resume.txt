@@ -1,0 +1,8 @@
+There should not be only one resume. Make new resume as per job description
+
+word cloud generator
+copy job decription in wcg and on new tab copy your resume in wcg. max keywords should match
+This technique will be followed in ATS
+
+jobalytics
+
