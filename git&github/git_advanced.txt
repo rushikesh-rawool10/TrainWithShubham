@@ -1,0 +1,114 @@
+Git advanced
+
+ git revert maintains version history
+
+git reset
+
+at the commit stage where you have made mistake, reset that commit id, so commits done after mistakes those files will be come in untracked/unstagged.
+
+
+Gitignore
+if you do want to track and not waant to take any risk about partcular file, mentioned that file in  gitignore
+
+git merge
+
+if you want to merge dev with master, come to master first then do 'git merge dev'
+
+
+do not use git push or git pull
+always use git push origin dev
+
+when we use merge , version history will be 
+
+master - 1 2  3
+
+dev    - 4  5  6(head)
+
+merge --> 1 2 3 6
+
+ rebase will maintain version history in a linear fashion
+ 
+ master - 1 2  3
+
+dev    - 4  5  6(head)
+
+merge --> 1 2 3 4 5 6
+
+git pull origin master --rebase
+
+git rebase master
+
+
+
+git cherry-pick
+
+vim feature_5.txt (committed)
+
+vim feature_6.txt (committed)
+
+if we do merge/rebase , it will add both 5th and 6th feature.
+But we want to pick only feature_5
+
+git cherry-pick commit-id of feature_5
+
+
+
+git stash
+
+when you are working with dev and need to work on stagging, that time you neither want to  commit incomplete work nor to leave
+it stored in temporary area
+
+git stash
+git status ---> will show working directory clean
+ 
+
+git stash pop
+git status --->feature_6 will show as untacked
+
+
+git branch -D stagging
+
+
+
+====how resolve conflicts
+
+we have done changes and forgot to push to github
+now on github we are making changes on same file and same lines
+
+now if we do git pull/push , will give conflicts
+and for merge/rebase/ff will also give conflicts
+
+  git status--> both modified
+  
+solution
+
+go to git
+cat that file
+it show changes by both  git level and github level
+
+finalise your changes
+
+git add feature_6.txt
+
+git commit
+
+
+
+
+when you got conflicts
+
+git pull origin dev --ff
+fixed changes
+git add filename
+git commit -m "messsage"
+
+
+to delete remote branch
+
+git push origin --delete branch
+
+
+to combine multiple commit into single commit--git sqash
+
+git rebase--to update the current branch with changes from another branch
+

@@ -1,0 +1,102 @@
+Github-by Microsoft  master branch is 'main'
+Git is open source
+
+other platform like github---gitlab| bit bucket
+
+
+git clone 'url'
+
+
+rm -rf commands
+will not be able to recover from filesystem
+
+if we have commited file in the git, we can restore it.
+git restore 'filename'
+
+if file is in 'RED' --untracked
+if file is in 'GREEN' --STAGE and need to commited
+when we do commit with commit meesge---nothing to commit, working tree clean
+
+
+we can make multiple local repo from remote repo but remote repo will remain one. This we called DVCS
+distributed version contrl system
+
+while we use push from local to github, it will ask for password and we do not store userid and passwords
+so we need to pass token in github url that is in Origin.
+
+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
+
+to use pull or fetch repo shoul be same at both side local and server side
+or
+to use pull/fetch need to have a clone repo from github, then pull/fetch operation will working
+
+git remote set-url --add origin https://Token@github.com/github-account-id/repo-name.git
+
+
+to use git push/fetch/pull changed need to committed first at local or github site
+
+
+clone vs fork
+
+clone--copy repo from github to local
+
+fork --copy repo from github account to another account
+
+
+branching trategies=========
+
+3 branches
+
+master
+stagging
+developer
+
+As per rule, make a feature branch from developer branch and then merge it to stagging and then master
+
+exception...
+
+when there are Major issues, then new branch taken from stagging or production, make changes in that new branch and merge it to stagging or production as per requirement
+
+====How to start your daily work in Git and github---gitlab|
+
+on your linix machine, check git status
+
+you should be on dev branch 
+check for link between git and git hub using git remote -v
+
+if nothing comes add github link to git
+
+git remote add origin https://token@github_URL
+
+
+
+git revert======================
+
+file gadbad_1.txt
+
+this is feature1-------commit_id_1
+this is feature2(mistake)-----commit_id_2
+
+git revert commit_id_2
+
+
+========git add .==> will stage all the files in the directory
+
+
+important---git revert will make new version
+
+vs
+
+git reset --will not make a version
+
+
+
+git rset hard -----all files in the workig directory will come in stage
+git rset soft ---- it mark the file in stage which is changed
+
+
+====you have to reset one commit_id before ,where you have made mistake, so that all your files after mistakes will come untracked, so that can you correct your mistakes
+
+
+
+
