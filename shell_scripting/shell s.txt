@@ -1,0 +1,56 @@
+#!/bin/bash
+
+echo "shyam: aaj anuradha wait kr rahi because aaj" && date | awk '{print $1, $2, $3}'
+
+echo "kyuki aaj meri RAM full hai" && free -h
+==========================Variables==============
+
+#!/bin/bash
+
+name=RushiDevops
+
+echo "The user logged in is" $name
+
+echo "what is your channel name"
+
+read channel
+
+echo "My channel name is" $channel
+
+=======================arguments============================
+#!/bin/bash
+
+
+echo "myname is $1"
+
+-----
+ubuntu@ip-172-31-44-91:~/mazedaar/devops/scripts$ ./arguments.sh Rushi
+myname is Rushi
+---provide argument after script, it will add into the script
+
+==========================Install by args=============
+
+#!/bin/bash
+
+
+
+sudo apt install $1
+
+./install_by_args.sh nginx
+
+======================
+
+echo "the characyers are $@"
+
+echo " total characters are $#"
+
+----@any no of arguments will take
+----# will give count of arguments
+
+ubuntu@ip-172-31-44-91:~/mazedaar/devops/scripts$ ./herapheri.sh rushi gauri tanu gau pappa mummy
+the characyers are rushi gauri tanu gau pappa mummy
+ total characters are 6
+
+
+
+
