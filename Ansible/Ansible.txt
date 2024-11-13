@@ -1,0 +1,61 @@
+Ansible is a configuration management tool
+terraform is a provisioning tool
+
+Ansible is a PUSH based mechanism
+Chef is a Pull based mechanism
+
+
+
+/etc/ansible/hosts
+
+[servers]
+[server_1 ansible_host=ip_add
+[server_2 ansible_host=ip_add
+
+
+[production]
+[server_3 ansible_host=ip_add
+
+[servers:vars]---->[group_name:vars], the groupname you mention, variable will be applied to that group
+
+[servers:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/keys/ansible-master_key-demo.pem
+
+======================================================================
+
+mkdir playbooks
+vim date_play.yml
+
+name: Dates Playbook
+hosts: [servers]
+tasks: 
+  - name: show date
+    command: date  
+
+  - name: show date again
+    command: date	
+	
+	
+ansible-playboook date_play.yml	
+
+===========================================================================
+
+vim install_ngix_play.yml
+
+-
+	name: Install nginx and start it
+	hosts:servers
+	become:yes  ####run as root user
+	tasks:
+	  - name: Install nginx
+	    apt:
+		 name: nginx
+		 state: latest
+	  - name: start nginx
+	    service:
+		 name: nginx
+		 state: started
+		 enabled: yes
+	  
