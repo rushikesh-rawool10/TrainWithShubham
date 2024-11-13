@@ -1,0 +1,28 @@
+Challenges faces IN OLD it Infractrure
+
+slow deployment
+expensive
+limited automation
+HUman error
+wasted resources
+
+terraform init
+terraform plan
+terraform apply
+terraform validate
+terraform fmy
+
+=========================hashnode=====
+https://namg.hashnode.dev/terraform-iaac
+
+https://www.linkedin.com/posts/praveen-agarwal-683034284_terraform-simplifying-infrastructure-activity-7106906600526774272-m-1J?utm_source=share&utm_medium=member_android
+
+https://www.linkedin.com/posts/kavita-pant-367138120_terra-week-challenge-day1-initiated-by-shubham-activity-7106939835981963264-cM-g?utm_source=share&utm_medium=member_desktop
+
+https://www.linkedin.com/posts/pratik596_introduction-to-terraform-and-terraform-basics-activity-7106949540838055936-20KI?utm_source=share&utm_medium=member_desktop
+
+https://www.linkedin.com/posts/sri-parthu-198273284_terraweek-day-2-activity-7107008758517571584-hOyd?utm_source=share&utm_medium=member_desktop
+
+https://www.gcptutorials.com/article/how-to-install-terraform-on-ubuntu
+
+https://pisquare.fr/terraform-101-an-introduction-to-terraform-concepts/
