@@ -1,0 +1,192 @@
+#!/bin/bash  -shebang
+
+
+to run script
+bash script.sh
+
+echo "heyy" && date
+--> heyy
+    sun jan 22 04 40 UTC 23
+	
+	
+	echo "heyy" && date | awk '{print $1,$2,$3}'
+--> heyy 
+    sun jan 22
+	
+	
+---------------------------------
+	
+	echo "heyy" && free -h
+--> heyy
+
+---------------------------------------
+make shell script executable
+
+chmod 700 script.sh
+./script.sh
+
+
+---------------------------------------------------------
+	name==TrainwithSHubham
+	
+	echo "my name is $name"
+-------------------------------------------------------------
+reading/taking input from user
+
+	
+
+echo "what is your channel name?"
+read channel
+echo " subscribe my $channel"
+--------------------------------------------------------------------
+arguments.sh
+
+#!/bin/bash
+echo " This is $1"
+
+--> This is
+
+re -run
+./arguments.sh Devops---(first argument)
+--> This is Devops----This is (first argument)
+
+---------------------------------------------
+argument2.sh
+
+#!/bin/bash
+sudo apt install $1
+
+./argument2.sh docker.io
+
+-----------------------------------------------
+characteres.sh
+#!/bin/bash
+
+
+echo "the characters are $1 $2 $3"
+
+./characteres.sh raju babu shyam
+
+--> The characters are raju babu shyam
+
+----------------------------------------------------
+characteres2.sh
+#!/bin/bash
+
+
+echo "the characters are $1 $2 $3"
+
+echo "total characters are $#"
+
+./characteres2.sh raju babu shyam
+
+--> The characters are raju babu shyam
+    total characters are 3
+--------------------------------------------
+characteres3.sh
+#!/bin/bash
+
+
+echo "the characters are $@"
+
+echo "total characters are $#"
+
+./characteres3.sh raju babu shyam devi total kabira
+
+--> The characters are raju babu shyam devi total kabira
+    total characters are 6
+	
+----------------------------------------
+
+sudo systemctl enable nginx--- at every restart nginx will be on
+
+-------------------------------------------------------------
+#!/bin/bash
+
+dir=/home/ubuntu/mazedaar/devops/*.sh
+
+for files in $dir
+do
+	echo $files
+done
+
+-------------------------------------------------------
+#!/bin/bash
+
+name=Shubham
+
+if [$name == "Shubham"]--for string
+then
+echo "Yes Shubham logged in"
+
+fi
+
+----------------------------------------
+#!/bin/bash
+
+val=1
+
+if [$val -eq 1] ---for integer
+then
+echo "Yes Shubham logged in"
+else 
+echo "val is different"
+
+fi
+
+-----------------------------------
+
+useradd via prompt
+
+
+read -p "Enter username" username
+sudo useradd -m $username
+
+----------------------------------------
+
+useradd via prompt
+
+for((i=1; i<=3; i++))
+do
+read -p "Enter username" username
+sudo useradd -m $username
+done
+
+echo "users added successfully"
+
+sudo cat /etc/passwd | grep user*--which is written as user
+
+------------------------------------------------------------------
+Backup script
+
+#!/bin/bash
+
+src=home/ubuntu/scripts
+tgt=/u01/app/oracle
+
+echo "backup started"
+tar -cvf $tgt/my_backup.tar.gz $src
+#(tar use in reverse order src-->tgt)
+
+echo "backup completed"
+
+---------------------------------------------------------------------------
+#!/bin/bash
+
+src=home/ubuntu/scripts
+tgt=/u01/app/oracle
+filename=$(date +'%d-%m-%y').tar.gz
+
+echo "backup started for $filename"
+
+tar -cvf $tgt/$filename $src
+#(tar use in reverse order src-->tgt)
+
+echo "backup completed"
+
+--------------------------------------
+croontab
+
+
+*  *   *          *      *
+min hr day(month) month  day(week)

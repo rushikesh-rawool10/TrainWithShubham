@@ -1,0 +1,63 @@
+1. list all processes
+ps -ef | awk -F" " '{print $2}'
+
+awk --filtered the output
+F- filed separator
+" "-- who is filed separator here i.e white space so ""
+=========================================================================
+2. only error log from remotye filed
+
+curl 'file-link' | grep TRACE
+
+================================================================================
+print noumber divided by 3,4 and not by 15
+
+#!/bin/bash
+
+### Description###
+
+
+for i in {1..100}; do 
+if ([ `expr $i % 3` == 0]) || [ `expr $i % 5 == 0`]) && [ `expr $i %15 != 0];
+then
+echo $i
+fi;
+done
+============================================================
+count no.of 's' in word
+
+#!/bin/bash
+
+x=mississipi
+
+grep -o "s" <<<"$x" | wc -l 
+
+===========================================
+how will you debug the shell script
+set -x
+
+====================================================
+how to oprn a file in a read onlt mode
+
+vim -r file.txt
+
+=========================================
+
+network troubleshoot
+
+traceroute
+
+===============================managing huge system logs=============
+
+logrotate (gzip,zip)
+
+=====================================================================
+
+jq--jason parser
+yq---yml parser
+
+aws ec2 describe-instances  | jq	
+
+[]--> list
+
+aws ec2 describe-instances  | jq '.Reservations[].Instances[].InstanceID'
