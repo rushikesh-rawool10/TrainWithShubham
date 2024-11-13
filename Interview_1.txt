@@ -1,0 +1,3 @@
+devops is a culture or practice to make app deployement process smooth and efficient
+
+devops is a process of imroving a delivery by ensuring there is proper automation,quality,monitoring in place testing

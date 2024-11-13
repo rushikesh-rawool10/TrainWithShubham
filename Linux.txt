@@ -1,0 +1,50 @@
+cat /etc/passwd --to see which users I have added
+
+sudo useradd -m bhide
+
+sudo groupadd devops
+
+cat /etc/group
+
+sudo usermod -aG devops Tappu
+
+MULTIPLE USERS IN THE GROUP--
+
+sudo gpasswd -M jethalal,bhide,babitaji tester
+
+sudo gpasswd -d babitaji tester
+
+sudo groupdel tester
+directory  usr group others
+d         rwx  rw-   r--
+
+---searching This is 'Devops' batch 4
+grep -r devops /home/ubuntu --->it will give directory (case sensetive)
+
+grep Devops -i -r /home/ubuntu (i-->insensitive) --> it will give  both devops & Devops
+
+grep batch file.txt--->this is a file for devops batch 4
+
+
+sudo chgrp devops app.log---changing group of file
+
+grep trace application.log
+
+grep trace application.log > errors_for_qa.log
+
+
+awk '/TRACE/ {print $1,$2,$5}' application.log
+
+awk '/TRACE/ {print NR,$1,$2,$5}' application.log
+
+awk 'NR>1 && NR<=20 && /TRACE/ {print NR,$1,$2,$5}' application.log
+
+
+find *log
+
+files created by user ubuntu
+find /u01/app/oracle -user ubuntu
+
+'users' group is a default group in a linux that all users are member of
+
+usermod --add user to a group

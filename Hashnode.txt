@@ -1,0 +1,10 @@
+Passionate ORACLE DATABASE ADMINISTRATOR | DevOps Enthusiast with a strong background in cloud architecture and solutions engineering. Leveraging the power of Amazon Web Services (AWS), knowledge of the AWS global infrastructure.
+
+rushikesh-rawool.hashnode.dev
+
+
+We are going to implement a Microservice app is deployed on Kubernetes using Flask app and Mongodb.
+
+Deploying a microservice application on Kubernetes is a common practice in modern software development and container orchestration. Kubernetes provides a robust and scalable platform for managing containerized applications. Below, I'll outline the steps to deploy a microservice application on Kubernetes
+
+Here I am using Killercoda tool for the kubernetes. Killercoda is an interactive learning platform which allows everyone to access Linux Kubernetes based environments just in their browser.

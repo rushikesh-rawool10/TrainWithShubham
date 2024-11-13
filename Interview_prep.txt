@@ -1,0 +1,117 @@
+PNP
+Devops is culture/practice which improves the ability of organization to deliver applications
+1. Porfolio
+make relevant portfolio by doing projects
+conrtributing to open source
+
+2.Networking
+Nowadays hiring through social media plaform lke linkedln
+connect with dev ops HR
+post about devops tools
+
+TWS-interview prep--DevOps Interview Preparation Strategy // Crack any DevOps Interview
+
+50-50 you and company
+check job description-what company is looking for--key words
+company faces issues related to data,security,cost optimization-these are KPI's-mention about how you are able to improve these key performance indicators
+
+
+company needs most popular devops tools, focus on how will you provide value to company with the use of these tools--how?
+making projects and showcase those projects--in github profile and linkdln profile
+
+1. telephonic interview
+prepared for introduction
+prepared with projects
+
+2. may be give assignments
+
+3. keep a question bank ready -search on google /glassdoor
+projects handy-  on linkedln create a link to the projects
+
+4.focus on troubleshooting errors
+
+5.search company name with interview questions eg.glassdoor
+read about company and questions asked.
+
+
+remote jobs
+linkedln--> filter--remote job
+wellfound
+
+
+
+
+
+job portals link
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbDAxbi1aWG9ZMXVBN0dKbjM4OUcwMy0xSFpjUXxBQ3Jtc0tuR2xGX3Q5bWM4Y1pSWlFoOWFWR0dNQWdiTWFDdEVNenFNM1ZhbGFXYjViNzdOTjZZeDVDZnBFa0ZyNE1QUDRnOHJka2RjQnlES29seDN6bkhfM2lCMjNyTndYcFNMVFFpVjhKU0hTUFN6UzU2aWRoZw&q=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1hDfh8SNJZYpWd4Md3aEegO_tsU9J29piXT8Ra-b_z4k%2Fedit%3Fusp%3Dsharing&v=Hk5Az-iPJJE
+
+
+1. I am a fresher in Devops field with keen interest in devops technology. I have done projects on kubernetes etc. If I get a chance I can show my skills and also learn from this job role.
+
+2. what are the problems you faced and how to resolved, what lesson learnt
+
+linux
+
+1.chown(ownership) and chmod(permission)
+
+2.SSH= secure shell is a secure way for remote connections and control the linux computer over the internet
+
+3. free-- to check memory
+
+4. top-cpu
+
+5. cronjob--It os a scheduled task in unix-based operating systems
+
+6.DNS domain naming systems--it is a system that translates human readable domain names like(example.com) into ip addresses that computers use to identify each other on network
+
+7. NAT(network address translation)-it is a process of making an IP to another by changing the header of IP packets while in transit via a router. This helps to improve security and decrease the no. of IP's of organization needs
+
+
+docker interview questions--tws yt video
+
+
+LinkedIn feature section
+Dp and cover
+Connect with people related to your domain
+Generative AI for devops TWS free course
+
+Post comment repost
+
+Dp and cover hd and appealing
+
+Edit cover in canva- search LinkedIn cover 
+
+LinkedIn message one to one to connect
+
+Use chat gpt
+
+Chetan rakhra
+
+Schedule post
+========================Introduction============================
+My name is
+I Graduated from Mumbai University
+
+past company and work overview
+In my daily work as Database Administrator I used to work on AWS RDS related activities and I observed that other teams are using devops tools like jenkins, terrafomrm, so there I found some interest in Devops. I Have done projects related to different Devops tools.
+ If given a chance I can show my skills and also learn through this job role
+--------------------------------------
+Inerviewer--day to activity
+major challenges faced
+cost optimization startegy
+saas, paas, iaas with examples
+benefits of serverless
+cloud native
+security aspects of 5 tier application
+aws cloud trail
+large data in s3--> any search mechanism
+impoertance of IAM users, roles,policies
+dynamo db
+aws transit gateway
+kuberners-pod is crashing/pending state
+aws fargate
+impoertance of indexing
+why data warehouse over RDS 
+data ware housing flaws
+
+design of HA plus falult talerent architecture

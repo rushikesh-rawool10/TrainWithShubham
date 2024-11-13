@@ -1,0 +1,4 @@
+sudo vim /etc/ssh/sshd_config
+
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
