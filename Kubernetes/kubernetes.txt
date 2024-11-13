@@ -1,0 +1,188 @@
+Kubernetes
+
+kubectl delete pod pod-name -n nginx
+if you delete pod, it will auto-heal and depplyment will be in desired state as mentioned in replica in deployment.yml
+
+kubectl delete -f pod.yml
+
+port --node port
+taregt port-- container port 
+node port-- port on which app will be accessible
+
+
+config maps vs secrets
+
+cofig map--> password will be in plain text
+
+secret --> password will be encrypted
+
+-------------------------
+
+to expose app, we use service
+
+to inject info inside app, we use config map/secret
+
+configmaps--> non confidential data
+
+secret--> confidential data
+
+--------------------------------HELM----------------------
+
+HELM is a package installer for kubernetes
+
+
+-------------INGRESS-------------
+
+INGRESS is user for rout the the traffic for your application
+
+Ingress controller--> watch for ingress service and updates the ingress managed load balancer
+
+load balancers pprovided by --> Nginx, F5, ambasaddor
+------
+
+first create PV 
+then PVC
+then in deployement.yml --> in containers--> volumeMounts: mysql container mount-point
+	
+							in Volumes--> persistentVolumeClaim:
+											claimName: mysql-pv-claim
+											
+-----------------PVC---persistent volume claim----------
+
+out of 10 gb total volume, you want to claim 5gb of volume for pod data storage
+
+
+-------------------HELM-------
+
+install helm on master node
+
+helm create node-app
+helm install node-app ./node-app
+
+helm containts predefined templates
+we need add values in values.yml
+sometimes need to modify deplyment.yml & service.yml in template folder
+
+====To access on Minikube======
+minikube ip
+curl -L http://192.168.49.2:30003/
+
+on system one minikube container will run
+
+to go inside minikube do--> ssh minikube
+
+docker ps--> all 7 kubernetes services as pod running
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host
+spec:
+  rules:
+  - host: "foo.bar.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/bar"
+        backend:
+          service:
+            name: node-app-service
+            port:
+              number: 80
+
+
+curl -L http://foo.bar.com/bar -v
+
+
+minikube addons enable ingress
+ingress controller======
+
+
+ kubectl get pods -A | grep nginx
+ 
+ kubectl logs ingress-nginx-controller-768f948f8f-fjm67 -n ingress-nginx
+ 
+ if get error---
+ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+ 
+ 
+ curl -L http://foo.bar.com/bar
+ 
+ ingress ip--->192.168.49.2
+ 
+ 
+ ===========to resolve domain name in the local=============
+  sudo vim /etc/hosts
+192.168.49.2 foo.bar.com
+
+curl -L http://foo.bar.com/bar -v
+
+
+
+curl 192.168.49.2/bar -H 'host: foo.bar.com'
+
+
+request first comes to ingress, it checks the routing, host/path based, then direct to the service mentioned in the ingress
+
+=================================using certificate====
+
+using ingress without SSL certificate, it will insecure
+
+we can use secret inside ingress
+
+curl http://foo.bar.com/ --cert client.crt --key  client.key -k
+
+=================================================RBAC=========
+
+USer Management in kubernetes
+
+Managing the access if services running on the cluster
+
+Kubernetes offloads the user management to identity providers likes EKS/OPEN SHIFT etc/hosts
+
+AWS--> EKS--> use IAM--> IAM OAUTH Provider
+
+
+role binding== user/service account + Role
+
+=====================================Custom Resources==
+
+extend the capabilities of API
+
+CRD-- cstom resource definition --->defining a new type of API to k8s
+
+=================to go inside of the pod====
+
+kubectl exec -it pod_name --bash
+
+========================COnfig maps==========
+
+config maps for non-confidential data
+
+eg. db port if we giving inside deployement-> container--> config maps
+if it continuiusly changing, everytime we have to apply the deployment, everytime pods will restart, this is not a good practice
+
+
+to avoid that, we need to store the db info inside container and fetch it
+
+to do that, create a volume inside deployement (in ym write at the level of container means it will be for whole deployement)
+
+then write volumeMounts inside container and provide the path eg. /opt
+then everytime we need to chanage the db info from configmaps and apply it, it will get apply to deployment without a pod restart
+
+configMap and secret are used to copy data inside container
+
+
+
+containers:
+   volumeMounts:
+       - name: db-connection
+          mountPath: /opt
+
+volumes:
+ - name: db-connection
+    configMap:
+         name: test-cm
+		 
+		 
+ 
