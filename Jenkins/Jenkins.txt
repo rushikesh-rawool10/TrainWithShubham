@@ -1,0 +1,232 @@
+sudo apt update
+
+sudo apt install openjdk-11-jdk -y
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian/jenkins.io-2023.key
+  
+  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+  
+  sudo apt-get update
+  
+  sudo apt-get install jenkins
+  
+  
+  -------------------JAN-2024---------------
+  Rushi-Jenkins
+  test@123
+  
+  http://18.181.186.77:8080/
+  http://18.181.186.77:8080/github-webhook/
+  
+  http://35.78.101.72:8080/github-webhook/
+  
+--------------------------------------------------------  
+
+RushiDevops
+http://13.212.194.158:8080/
+
+openjdk version "17.0.8" 2023-07-18
+
+when jenkins installed, it will create user 'jenkins' by own and it has permission to run jenkins
+
+sudo usermod -aG docker jenkins ---to run docker, need to add jenkins user to docker group
+
+sudo reboot
+
+
+http://18.143.163.25:8080/
+---------------------------------------new account-------------
+rushiDevops
+http://13.215.208.59:8080/
+
+
+docker compose up -d --no-deps --build <service_name>
+
+=======================================================
+
+
+echo "code copied"
+
+docker-compose down
+docker-compose up -d --no-deps --build web
+echo "code run"
+
+--------------------------------------------
+declarative pipeline
+groovy syntax
+
+----------------------------------
+
+
+Master-agent connection
+
+in Master
+Continuos Integration--- The code given by developer is build successfully then test also successfully and ready for deployememt.
+
+If we are  manually doing build/push code/test or total operation then it's continus delivery
+
+If  code push/build/test is doing in automated way due to some changes then it's continuous deployment
+
+during installation, it creats jenkins user and jenkins user performs all opearations.
+
+to run docker also , we nned to add jenkins user to docker group
+sudo usermod -aG docker jenkins
+
+cd .ssh/
+ssh-keygen
+
+id_rsa.pub
+copy key to agent
+go to .ssh
+ls
+authorized_keys
+paste master's pub key to agent's authorized keys
+
+-----------------------------------------connect agent with Master on GUI---
+make creadentials
+
+add agent ip address
+add Master's private key on GUI, so that agent can communicate with master using it's own public key
+
+
+
+    
+
+----------------------------if existing keys not worked,create manually---
+
+ssh-keygen -t ed25519--->25519 is id of existing keys
+then give name to key 
+
+======================Important====
+
+In jenkins file
+
+jenkins file is building the image
+docker build . -t trainwithshubham/node-todo-cicd:latest
+
+push command taking the latest build and pushing to docker hub 
+
+docker compose pull the latest image from docker hub
+
+=====================================================
+trying basic node todo-app delivery
+
+got error--The image for the service you're trying to recreate has been removed. If you continue, volume data could be lost. Consider backing up your data before continuing.
+
+Continue with the new image? [yN]pull access denied for rushikesh-rawool10/node-app-test-new, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
+
+
+this is due to dockerhub login credntials nort provided or image is not present
+
+for basic project we will use 'build- .'--> build image using dockerfile in the current folder
+
+need to restore--- 
+web:
+  image : "rushidevops10/node-app-test-new"
+
+currently we set ---
+web:
+    build: .
+	
+	==================================================
+	port is already in user
+	we make node to-do app delivery and node to-dp app deployment using freestyle project
+	
+	we got this error because delivery one using different folder and deployement one using different
+	docker-compose down will work in the folder where all code available(docker-compose file)
+	
+	====================================================================
+	using webhook deploying project
+	but htmlp page was not reflecting
+	bcs we are using..
+	web:
+  image : "rushidevops10/node-app-test-new"
+  (when to use above: in pipeline we mentioned docker login push latest image and need to use tht latest one)
+  once we changed to
+  web:
+    build: .
+	
+	it stated using newly build image
+	
+	=====================================================
+	
+	Jenkins pipeline
+	when we want to use dockerhub image every time 
+	in stage--> docker login & docker push
+	in docker-compose-->>services-->image: docker-hub image
+	
+	
+*****CICD--importance*******
+	when as soon as code changes on repo, imediately new deployement will start & within few seconds site will be available with new changes
+	
+	
+	------why we push code to docker hub---
+	The image image version/app version that we are making at local, If we pushed it to docker hub,that
+can be use anywhere anytime.
+If we do not pushed, it will restrict to local & when instace got deleted, image will alos be removed
+
+============================Sonar qube=====================
+security server
+devsecops
+
+t2.medium
+docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+
+admin/admin	
+	
+	
+	In jenkins a 'job' is a series of  tasks to be executed
+	
+	if master fails,none will take over or execute/gone
+	
+	slave used for offload--efficient execution
+	
+	=============================================================
+	Jenkins master-agent node
+	
+	MAster-->  cd .ssh/
+				ssh-keygen
+				id_rsa & id_rsa.pub
+go to agent server
+cd .ssh/
+authorized_keys
+
+copy pub key from master mode and paste in authorized_keys of agent node
+
+ssh ubuntu@ip_add_agent
+
+install java on agent
+master and agent node java version should be same
+
+=======================================set up agent=========================
+
+go to jenkins
+set up an agent
+name
+permanent agent
+create
+no.of executors-1
+remote root directory-->home/ubuntu/
+lables--dev/prod/stage or app_name
+usage--> use this node as much as possible
+launch method-->launch agents via ssh	
+host--ip add of agent
+credentials-->add credentials
+           domain-global
+           kind-->SSH username with private key	
+           ID--dev-key	
+           username--ubuntu
+           private key--enter directly	
+verifying strategy
+non verifying
+
+======================New key generation===
+master
+cd .ssh/
+ssh-keygen -t ed25519
+	
