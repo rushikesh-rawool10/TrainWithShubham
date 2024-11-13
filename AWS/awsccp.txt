@@ -1,0 +1,26 @@
+application load balancer---aapke http website pr load aa rha and content user ko nhi mil rha
+
+network load balancer--- 12th resulta, load on network layer
+
+====to increse cpu
+
+sudo yum install stress
+stress -c 8
+
+
+aws_auto_scaling vs kubernetes
+
+aws_auto---->at infrastructure level increses instances
+kubernetes---> at cluster level, increses pods within single instance
+
+
+
+VPC, USER and GATEWAY
+
+for external user to access/ssh ec2 under public subnet--need security group
+
+to provide internet inside ec2 --need IG internet gateway
+
+to communicate from public to private subnet---need NAT Gateway
+
+Route Table work---attach route between subnet & gateway

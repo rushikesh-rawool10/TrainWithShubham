@@ -1,0 +1,3 @@
+NAT gateway--> to communicate between public and private subnet
+
+internet gateway--> to provide internet to public subnet

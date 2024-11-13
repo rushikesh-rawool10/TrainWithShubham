@@ -1,0 +1,45 @@
+NAT gateway--> to communicate between public and private subnet
+
+internet gateway--> to provide internet to public subnet
+
+===========================================================================================
+Some of the most important AWS services for DevOps include:
+
+1. Amazon EC2: Provides scalable virtual servers for running applications and services.
+
+2. Amazon S3: A highly scalable object storage service for storing and retrieving data.
+
+3. AWS Elastic Beanstalk: Simplifies the deployment and management of applications.
+
+4. Amazon RDS: Offers managed relational databases like MySQL, PostgreSQL, and more.
+
+5. AWS Lambda: Allows you to run code without provisioning or managing servers.
+
+6. Amazon CloudWatch: Provides monitoring and logging services for AWS resources.
+
+7. AWS CodePipeline: Helps automate the continuous integration and continuous delivery (CI/CD) pipeline.
+
+8. AWS CodeBuild: A fully managed build service for compiling source code and running tests.
+
+9. AWS CodeDeploy: Automates code deployments to various compute services.
+
+10. AWS Elastic Container Service (ECS): Orchestrate and manage Docker containers at scale.
+
+11. Amazon EKS: Managed Kubernetes service for container orchestration.
+
+12. AWS CloudFormation: Provides infrastructure as code for defining and deploying AWS resources.
+
+13. AWS Identity and Access Management (IAM): Manages access and permissions to AWS resources.
+
+14. AWS Systems Manager: Simplifies resource and application management tasks.
+
+15. AWS CloudTrail: Records API calls for your AWS account, providing audit and compliance.
+
+16. AWS Step Functions: Coordinate distributed applications using visual workflows.
+
+17. AWS OpsWorks: Automates configuration management using Chef or Puppet.
+
+18. AWS Elastic Load Balancing: Distributes incoming traffic across multiple Amazon EC2 instances.
+
+These services help DevOps teams automate, manage, and streamline the development and deployment processes, enabling faster and more efficient software delivery. The specific services you need will depend on your project's requirements and architecture.
+
