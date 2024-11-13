@@ -1,0 +1,16 @@
+ To run docker and jenkins
+ 
+ tools need to be installed on OS
+ 
+ sudo apt update
+sudo apt install openjdk-17-jre  (for jenkins)
+
+docker----
+
+sudo apt install docker.io
+
+sudo usermod -aG docker jenkins/$USER
+sudo rebbot
+
+sudo apt install docker-compose
+ 

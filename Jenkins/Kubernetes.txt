@@ -1,0 +1,114 @@
+minikube is local
+inside one container, it creates different container virtually.
+minicuber needs 2 cpu's min, so use t2.medium
+
+kubeadm requires 2 containers
+in kubeadm it doe not create individual container for component, it creates service for each componenet
+
+
+sudo su
+kubeadm reset pre-flight checks---> changes made by kubeadm init kubeadm join will be reverted
+
+
+=======================================Commands================================================================
+
+   27  kubectl create namespace nginx
+   
+   28  kubectl get namespace
+
+   31  kubectl apply -f pod.yml
+   
+   33  kubectl get pods -n nginx
+ 
+   40  kubectl apply -f deployment.yml
+
+   51  kubectl get pods -n nginx -o wide
+
+   54  kubectl get deployment -n nginx
+   
+   55  kubectl describe deployment nginx-deployment -n nginx
+   
+   56  kubectl scale deployment nginx-deployment --replicas=2 -n nginx
+   
+   57  kubectl get pods -n nginx
+
+
+   66  kubectl apply -f service.yml
+
+   68  kubectl get service -n nginx
+
+
+   77  kubectl delete pod nginx-deployment-558c769fcf-6bsjz -n nginx
+  
+ 
+  
+  107  kubectl get svc -n django  # service can be used as svc 
+  
+  108  kubectl get pods -n django
+  109  kubcetl scale deployment todo-deployment --replicas=6 -n django
+
+  
+
+
+
+
+  120  kubectl apply -f mongo-pv.yml   #persistent volume
+  121  kubectl apply -f mongo-pvc.yml   #persistent volume-claim, to bind or connect
+  122  kubectl apply -f mongo.yml
+  123  kubectl apply -f mongo-svc.yml
+  124  kubectl get pods
+  125  kubectl apply taskmaster.yml
+  126  kubectl apply -f taskmaster.yml
+  127  kubectl apply -f taskmaster-svc.yml
+  128  vim taskmaster-svc.yml
+  129  kubectl apply -f taskmaster-svc.yml
+  130  history
+  
+  =====================killerkoda========
+  
+  kubectl get pods
+  kubectl exec -it podname --bash
+  
+  ======================================on node===
+  docker exec -it eb8a32c14dfd bash
+  
+  # mongosh
+  exit
+  exit
+  
+  root@ip-172-31-39-104:/home/ubuntu# curl http://127.0.0.1:30009
+{"message":"Welcome to Tasks app! I am running inside taskmaster-ccd6d68b6-njx7j pod!"}
+root@ip-172-31-39-104:/home/ubuntu#
+
+
+curl http://127.0.0.1:30009
+
+
+
+
+curl -d '{"task":"complete the assignment"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:30009/task
+
+in the ip use localhost ip i.e worker node ip
+
+
+--------------------killercoda------------------------
+
+curl -d '{"task":"Successfully completed  the assignment on Microservices on Kubernetes"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:30007/task
+
+curl -d '{"task":"Thanks a lot Shubham Sir for your valuable Guidance!"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:30007/task
+=======================killerkoda===
+killerkoda cka scenarios based cka q
+
+======================================================
+kubectl apply -f deployment.yml dry-run=client
+
+configMaps--> to pass environmental varialble data to deployment
+
+secret---> to pass password/token to deployment
+
+after writing configMaps and secret files also mention them in deployment file with key 
+so for every new deployment you have make changes in only configmaps and secret files
+
+===================HELM=====
+
+helm install node-app ./node-app

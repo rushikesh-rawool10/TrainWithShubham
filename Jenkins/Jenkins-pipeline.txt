@@ -1,0 +1,116 @@
+
+pipeline{
+    agent any
+    
+    stages{
+        stage(code){
+            
+            steps{
+               echo "code cloned" 
+            }
+        }
+        
+        stage(build){
+            
+            steps{
+               echo "code Built" 
+            }
+        }
+        
+        stage(test){
+            
+            steps{
+               echo "code Tested" 
+            }
+        }
+        
+        stage(deploy){
+            
+            steps{
+               echo "code Deployed" 
+            }
+        }
+        
+        
+    }
+        
+    }
+	==========================================node-todo-cicd==============================================
+	
+
+
+
+
+pipeline{
+    agent {label 'dev-agent'}
+    stages{
+        stage('code'){
+            steps{
+               git url : 'https://github.com/rushikesh-rawool10/node-todo-cicd.git', branch: 'master'
+            }
+        }
+        stage('Build & test'){
+            steps{
+               sh 'docker build . -t node-todo-cicd'
+            }
+        }
+        stage('Deploy'){
+            steps{
+              sh 'docker-compose down $$ docker-compose up -d '
+            }
+        }
+    }
+}
+
+================================================declarative==============
+
+pipeline{
+    agent {label 'dev-agent'}
+    stages{
+        stage('code'){
+            steps{
+               git url : "https://github.com/rushikesh-rawool10/node-todo-cicd.git", branch: "master"
+            }
+        }
+        stage('Build & test'){
+            steps{
+               sh 'docker build . -t rushikesh-rawool10/node-todo-cicd:latest'
+            }
+        }
+		stage("Push to DockerHub"){
+            steps{
+                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                    
+                }
+            }
+        }
+        stage("Deploy"){
+            steps{
+                sh "docker-compose down && docker-compose up -d"
+                sh "docker push rushikesh-rawool10/node-todo-cicd:latest"
+            }
+        }
+    }
+}
+
+============================================to pick latest image from dockerhub and send to EC2===
+
+-->docker-compose.yml
+
+version: '3.9'
+
+services:
+  web:
+    image: "trainwithshubham/node-app-test-new:latest"
+    ports:
+      - "8000:8000"
+	  
+===================================to build current image=====
+	  version: '3.9'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"

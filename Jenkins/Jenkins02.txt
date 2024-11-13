@@ -1,0 +1,51 @@
+pipeline {
+    agent any 
+    
+    stages{
+        stage("Clone Code"){
+            steps {
+                echo "Cloning the code"
+                git url:"https://github.com/rushikesh-rawool10/django-notes-app.git", branch: "main"
+            }
+        }
+        stage("Build"){
+            steps {
+                echo "Building the image"
+                sh "docker build -t my-note-app ."
+            }
+        }
+        stage("Push to Docker Hub"){
+            steps {
+                echo "Pushing the image to docker hub"
+                withCredentials([usernamePassword(credentialsId:"DockerHub",passwordVariable:"DockerHubPassword",usernameVariable:"DockerHubUser")]){
+                sh "docker tag my-note-app ${env.DockerHubUser}/my-note-app:latest"
+                sh "docker login -u ${env.DockerHubUser} -p ${env.DockerHubPassword}"
+                sh "docker push ${env.DockerHubUser}/my-note-app:latest"
+                }
+				       }
+        }
+        stage("Deploy"){
+            steps {
+                echo "Deploying the container"
+                sh "docker-compose down && docker-compose up -d"
+                
+            }
+        }
+    }
+}
+
+
+/home/ubuntu/Jenkins/django-notes-app
+
+getting below error in docker-compose
+
+docker.errors.DockerException: Error while fetching server API version: HTTPConnection.request() got an unexpected keyword argument 'chunked'
+
+docker image prune
+docker rmi image_id
+
+/home/ubuntu/Jenkins/node-todo-cicd
+
+/var/lib/jenkins/workspace/node-app-pipeline
+
+http://52.194.237.58:8080/github-webhook/
