@@ -1,0 +1,76 @@
+Grafana
+
+Observability
+
+application--->Logging
+				monitoring
+				Alerting
+				Visualisation
+				
+Grafana
+Loki or Prometheus
+Prom tail
+
+
+Grafana+ LOKI + Promtail===1 stack
+
+Grafana + Prometheus===2 stack
+
+ELK (Elastick logstash kibana)====stack
+
+
+Loki---Log Aggrigator
+
+
+sequence
+
+promtail will listen to the application and sends logs to Loki 
+then loki sends logs to Grafana to create dashboards
+
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+
+sudo /bin/systemctl start grafana-server
+
+
+
+install docker
+
+sudo chown $USER /var/run/docker.sock
+
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/cmd/loki/loki-local-config.yaml -O loki-config.yaml
+
+docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.9.1 -config.file=/mnt/config/loki-config.yaml
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
+
+docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.9.1 -config.file=/mnt/config/promtail-config.yaml
+
+http://localhost:3100
+
+
+
+
+wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
+
+docker run -d --name=prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
+docker with persistent storage (or bind mounts) 
+
+docker run -d --name=prometheus -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml -v prometheus-data:$(pwd)/prometheus-data prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
+
+
+# Create persistent volume for your data
+docker volume create prometheus-data
+# Start Prometheus container
+docker run \
+    -p 9090:9090 \
+    -v /path/to/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v prometheus-data:$(pwd)/prometheus-data \
+    prom/prometheus
+	
+	prometheus-data
