@@ -1,0 +1,167 @@
+source code management
+GIT is a version control system which gives you functionality of source code management and also allows you to do collaboration
+collaboration
+===========================
+If I use file system and file got deleted , I will never be able to recover it.
+In git we can recover
+git init
+
+git status(like ls in filesystem)
+
+
+git add  (to untracked to stage)
+
+git commit (to stage to tracked)
+
+git rm --cached (to stage  to untracked)
+
+after commiting, file got deleted from filesystem and you want to restore, use
+
+git restore
+
+file deleted from git...
+git restore --staged <filename>
+
+git checkout -b dev
+
+untracked to stage====
+git add test.txt
+
+stage to tracked====
+git commit -m "test code has been added"
+
+stage to untracked/unstaged===
+git rm -- cached
+
+if rm test.txt====
+deleted from file system but present on git and want to restore
+git restore test.txt
+
+git log
+
+git log -- oneline===log in single line with short commit id and message(without auther and date)
+
+git log --oneline --pretty==log with short commit id with all details
+
+
+git config --global user.name "rushikesh"
+
+git config --global user.email "rushikesh.rawool10@gmail.com"
+
+git checkout -b-- to make and switch to new branch
+
+git checkout master ===to switched to existing branch
+
+git branch-- to check which bran you are in
+
+to copy public repo to local
+git clone http:----
+
+git remote -v--to check origin
+
+git push--local to github
+
+git pull--from particular branch to local
+
+git pull origin main
+
+origin is a variable in which github url is stored
+
+git fetch--from all branches to local
+
+
+git remote set-url --add name new-url
+
+git remove set-url --add origin https://token@url
+git remote set-url --remove name new-url
+
+git push origin main
+git push origin(variable name which stores the URL) main
+
+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
+================================================
+To do fetch/push from private repository we need personal access token
+
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$ git remote -v
+origin  https://github.com/rushikesh-rawool10/devops-batch-4.git (fetch)
+origin  https://github.com/rushikesh-rawool10/devops-batch-4.git (push)
+
+git remote set-url --add origin https://Token@github.com/github-account-id/repo-name.git
+
+
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$ git remote set-url --add origin https://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@github.com/rushikesh-rawool10/devops-batch-4.git
+
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$ git remote -v
+origin  https://github.com/rushikesh-rawool10/devops-batch-4.git (fetch)
+origin  https://github.com/rushikesh-rawool10/devops-batch-4.git (push)
+origin  https://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@github.com/rushikesh-rawool10/devops-batch-4.git (push)
+
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$ git remote set-url --delete origin https://github.com/rushikesh-rawool10/devops-batch-4.git
+
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$ git remote -v
+origin  https://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@github.com/rushikesh-rawool10/devops-batch-4.git (fetch)
+origin  https://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@github.com/rushikesh-rawool10/devops-batch-4.git (push)
+ubuntu@ip-172-31-44-91:~/rushi-github-profile/devops-batch-4$
+==================================================================
+
+to sync local with Github
+
+git remote add origin https://token@github-url
+to see, git remote -v
+
+git checkout master
+
+git push origin master 
+
+============================
+
+git revert commit-id
+nano editor will open for confirmation
+
+revert maintains it's own version in git
+in filesystem file will be deleted
+in git log --oneline will show --->revert  "gadbad feature"
+
+==============================================
+to merge master with dev
+
+git checkout master
+git merge dev
+
+git merge dev --squash ---> all files will merge but it reduces the commits history
+
+git push origin master
+
+git pull origin master --rebase  --->bring all commits in linear way
+
+=============================================
+suppose 5, 6 th features have been added, and you want only 5th not both 5,6 then use cherry-pick
+
+git cherry-pick 'commit-id'
+
+===========================
+
+git stash --to store temporary work
+
+git stash pop  ---get back to temporary work
+
+
+===============================
+git branch -D stagging  ---to delete the branch
+
+================CONFLICTS====
+
+conflicts will come when local and github file working on same line
+
+
+getting push conflicts---
+
+git pull origin dev
+git pull origin dev --ff
+fix merge conflicts
+git push origin dev
+
+====to avoid conflicts always pull first====
+
+
+
